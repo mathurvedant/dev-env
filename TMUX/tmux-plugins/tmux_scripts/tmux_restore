@@ -1,0 +1,3 @@
+#! /bin/bash
+
+tmux new -s restore_session '/root/tmux-plugins/tmux-resurrect/scripts/restore.sh ; tmux kill-session -t save_temp'

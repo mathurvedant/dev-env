@@ -1,0 +1,28 @@
+#!/usr/software/bin/bash
+
+last_server=`cat /u/vedant/bin/tmux_cyclserver.txt`
+if [ "$last_server" == "" ]
+then
+	last_server=`hostname -s`
+fi
+
+new_server=`print_ssh_best`
+if [ "$new_server" == "" ]
+then
+	new_server=$last_server
+fi
+
+skip_migrate=$1
+if [ "$skip_migrate" == "skip" ]
+then
+	ssh vedant@$last_server.rtp.netapp.com
+	exit
+fi
+
+if [ "$last_server" == "$new_server" ]
+then
+       ssh vedant@$last_server.rtp.netapp.com
+else
+	tmux_migrate $new_server
+fi
+ssh vedant@`cat /u/vedant/bin/tmux_cyclserver.txt`.rtp.netapp.com

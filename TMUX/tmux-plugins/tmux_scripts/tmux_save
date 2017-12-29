@@ -1,0 +1,4 @@
+#! /bin/bash
+
+tmux new -s save_temp /root/tmux-plugins/tmux-resurrect/scripts/save.sh
+tmux kill-server

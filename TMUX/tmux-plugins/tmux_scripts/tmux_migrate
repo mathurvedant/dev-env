@@ -1,0 +1,5 @@
+#!/usr/software/bin/bash
+
+ssh -t vedant@`cat /u/vedant/bin/tmux_cyclserver.txt`.rtp.netapp.com 'tmux_save; exit'
+echo $1 > /u/vedant/bin/tmux_cyclserver.txt
+ssh -t vedant@$1.rtp.netapp.com 'tmux_restore'
