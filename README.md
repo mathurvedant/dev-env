@@ -8,16 +8,17 @@
 
 **Installation of `vim_runtime`**
 
- - Clone this repo in your home directory.
- - Init and update all git submodules recursively.
- - Create a symlink called `.vim_runtime` which points to the `vim_runtime` submodule from the repo which was cloned into the home directory.
- - Run the install vimrc script.
- - Run the install YCM script for C autocomplete and on the fly compilation.
-
     git clone https://github.com/mathurvedant/dev-env.git
     git submodule update --init --recursive
     ln -s dev-env/VIM/vim_runtime ~/.vim_runtime
     sh ~/.vim_runtime/install_awesome_vimrc.sh
     cd .vim_runtime/my_plugins/YouCompleteMe/
     ./install.py --clang-completer
+
+ - Clone this repo in your home directory.
+ - Init and update all git submodules recursively.
+ - Create a symlink called `.vim_runtime` which points to the `vim_runtime` submodule from the repo which was cloned into the home directory.
+ - Run the install vimrc script.
+ - Run the install YCM script for C autocomplete and on the fly compilation.
+
 
