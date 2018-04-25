@@ -24,9 +24,21 @@ regress -testbed $1 -physTopology nsg -platform dctor -subTopology default -prio
 echo "Queueing NPM EVENTS"
 regress -testbed $1 -physTopology nsg -platform dctor -subTopology default -priority P0 -runLevel quick -vrs 0.0/PR$2 -altimages 7750/0.0/latest 7750/0.0/latest -runSuite npm_events -useimages dctor/0.0/latest
 
+#NSG NPM
+echo "Queueing NSG NPM"
+regress -testbed $1 -physTopology nsg -platform dctor -subTopology default -priority P0 -runLevel regular -vrs 0.0/PR$2 -altimages 7750/0.0/latest 7750/0.0/latest -runSuite nsg_npm -useimages dctor/0.0/latest
+
 #NSG APM
 echo "Queueing NSG APM"
 regress -testbed $1 -vsdMode standalone -physTopology nsg -platform dctor -priority P0 -runLevel quick -vsd 0.0/latest -vrs 0.0/PR$2 -altimages 7750/0.0/latest 7750/0.0/latest -runSuite nsg_apm -useimages dctor/0.0/latest
+
+#NSG APM PC
+echo "Queueing NSG APM PC"
+regress -testbed $1 -vsdMode standalone -physTopology nsg -platform dctor -priority P0 -runLevel quick -vsd 0.0/latest -vrs 0.0/PR$2 -altimages 7750/0.0/latest 7750/0.0/latest -runSuite nsg_apm_pc -useimages dctor/0.0/latest
+
+#NSG NAT_TRAVERSAL
+echo "Queueing NSG NAT_TRAVERSAL"
+regress -testbed $1 -vsdMode standalone -physTopology nsg -platform dctor -priority P0 -runLevel regular -vsd 0.0/latest -vrs 0.0/PR$2 -altimages 7750/0.0/latest 7750/0.0/latest -runSuite nsg_nattraversal -useimages dctor/0.0/latest
 
 #NSG DUC PPS
 echo "Queueing DUC PPS"

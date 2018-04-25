@@ -30,18 +30,20 @@ skip_clean=0
 
 printf "BEAR_GEN_CC: Preparing current directory `pwd` for compilation database generation\n"
 
-sed -i -e 's|"/vswitchd/|"/ovs/vswitchd/|' vrs/build-aux/vrs-ovsschema-merge.py
-sed -i -e 's|"/vrs/|"/ovs/vrs/|' vrs/build-aux/vrs-ovsschema-merge.py
-sed -i -e 's|"/build-aux/|"/ovs/build-aux/|' vrs/build-aux/vrs-ovsschema-merge.py
+#No need to edit schema files with ovs25
+#sed -i -e 's|"/vswitchd/|"/ovs/vswitchd/|' vrs/build-aux/vrs-ovsschema-merge.py
+#sed -i -e 's|"/vrs/|"/ovs/vrs/|' vrs/build-aux/vrs-ovsschema-merge.py
+#sed -i -e 's|"/build-aux/|"/ovs/build-aux/|' vrs/build-aux/vrs-ovsschema-merge.py
 
 cd ovs
 ./boot.sh
-./configure --enable-Werror --with-vendor=vrs CFLAGS="-g -O2 `xml2-config --cflags`" LIBS="-lrt -lm `xml2-config --libs` -lssl -lcrypto"
+./configure --enable-Werror --with-vendor=vrs --prefix=/usr --sysconfdir=/etc --localstatedir=/var  CFLAGS="-g -O0 `xml2-config --cflags`" LIBS="-lrt -lm `xml2-config --libs` -lpthread -lanl"
 
-cd ..
 printf "BEAR_GEN_CC: Generating Bear Compilation Database...\n"
-bear make -C ovs
-git add "compile_commands.json"
+bear make
+cd ..
+mv ovs/compile_commands.json ./compile_commands.json
+git add compile_commands.json
 
 printf "BEAR_GEN_CC: Cleaning up..\n"
 if [ "$skip_git_clean" == "--skip-git-clean" ]
@@ -59,7 +61,7 @@ then
     git clean -f
 fi
 
-git checkout vrs/build-aux/vrs-ovsschema-merge.py
+#git checkout vrs/build-aux/vrs-ovsschema-merge.py
 git reset compile_commands.json
 
 printf "BEAR_GEN_CC: Compilation Database Created: `pwd`/compile_commands.json \n"
