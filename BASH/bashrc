@@ -20,9 +20,6 @@ fi
 #######################################################
 # EXPORTS
 #######################################################
-# Nuage mvdvcdev emails
-export CVSROOT=:pserver:vmathur@cvspc.mv.usa.alcatel.com:/swdev/cvsrep
-
 # Disable the bell
 if [[ $iatest > 0 ]]; then bind "set bell-style visible"; fi
 
@@ -571,13 +568,6 @@ trim()
 	var="${var#"${var%%[![:space:]]*}"}"  # remove leading whitespace characters
 	var="${var%"${var##*[![:space:]]}"}"  # remove trailing whitespace characters
 	echo -n "$var"
-}
-
-#VSD Port Forwarding
-ppf(){
-    ip=`getent hosts mvdc$1.mv.nuagenetworks.net | awk '{ print $1 }'`
-    sshpass -p tigris ssh root@$ip 'bash -s' < /root/Nuage_Scripts/TestBed_Scripts/prepPortForwarding.sh
-    echo -e "\nVSD at https://$ip:8443/?debug=true&user=csproot&pass=csproot&org=csp&notimeout"
 }
 
 #######################################################
