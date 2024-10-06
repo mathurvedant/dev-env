@@ -3,7 +3,6 @@
 
  - BASH - Contains bashrc and other files. Copy them directly to your home directory to use.
  - TMUX - Contains tmux scripts and plugins useful for periodic backup/restore of tmux sessions.
- - NUAGE - Contains nuage specific scripts.
  - VIM - Contains vim colors and a GIT submodule `vim_runtime` containing numerous vim plugins and scripts.
 
 **Installation of `vim_runtime`**
