@@ -17,20 +17,6 @@ elif [ -f /etc/bash_completion ]; then
 	. /etc/bash_completion
 fi
 
-#########################################################
-# NUAGE PROXY SETTINGS
-#########################################################
-
-export http_proxy=http://proxy.lbs.alcatel-lucent.com:8000
-export https_proxy=https://proxy.lbs.alcatel-lucent.com:8000
-no_proxy=.openstack.local
-
-######################################
-# NUAGE PATH SETTINGS
-######################################
-export PATH=$PATH:/usr/global/bin
-
-
 #######################################################
 # EXPORTS
 #######################################################
