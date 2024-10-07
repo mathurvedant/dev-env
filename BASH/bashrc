@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
-iatest=$(expr index "$-" i)
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    iatest=$(gexpr index "$-" "i")
+else
+    iatest=$(expr index "$-" "i")
+fi
 
 #######################################################
 # SOURCED ALIAS'S AND SCRIPTS
